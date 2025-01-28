@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Sellers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-scrollbar {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+            background: #cccaca;
+            cursor: pointer;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: black;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .products-wrapper {
+            padding-bottom: 30px;
+            will-change: transform; 
+        }
+        
+        .product-card img {
+            transition: opacity 300ms ease;
+            will-change: opacity;
+        }
+
+        .custom-scrollbar:hover::-webkit-scrollbar {
+            height: 6px; 
+        }
+        
+        @media (min-width: 768px) {
+            .product-card {
+                width: 280px;
+                flex-shrink: 0;
+            }
+            .products-wrapper {
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-center w-full md:text-left md:w-auto">Best Sellers</h1>
+            <a href="#" class="text-gray-600 hover:text-black items-center hidden md:flex">
+                Shop All Best Sellers 
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+            <div class="grid grid-cols-2 md:flex md:gap-6 gap-6 md:w-max products-wrapper">
+            </div>
+        </div>
+
+        <button id="showMoreBtn" class="w-full bg-black text-white py-3 rounded-full mt-6 md:hidden">
+            Show More
+        </button>
+    </div>
+
+    <script>
+        const products = [    {
+                name: "WIRELESS HEADPHONES PRO",
+                price: 199.95,
+                reviews: 1547,
+                rating: 4.8,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+                secondaryImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80",
+                tag: "NEW"
+            },
+            {
+                name: "URBAN SNEAKERS PRO",
+                price: 159.99,
+                reviews: 856,
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+                secondaryImage: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80",
+                tag: "TRENDING"
+            },
+            {
+                name: "CLASSIC LEATHER BACKPACK",
+                price: 89.99,
+                reviews: 673,
+                rating: 4.3,
+                image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa",
+                secondaryImage: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80",
+                tag: "BEST SELLER"
+            },
+            {
+                name: "SPORT WATER BOTTLE",
+                price: 34.99,
+                reviews: 428,
+                rating: 4.4,
+                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8",
+                secondaryImage: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80",
+                tag: "ECO FRIENDLY"
+            },
+            {
+                name: "RUNNING SHORTS ELITE",
+                price: 45.95,
+                reviews: 892,
+                rating: 4.6,
+                image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b",
+                secondaryImage: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80",
+                tag: "BEST SELLER"
+            },
+            {
+                name: "YOGA MAT PREMIUM",
+                price: 78.50,
+                reviews: 567,
+                rating: 4.7,
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b",
+                secondaryImage: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80",
+                tag: "PREMIUM"
+            },
+            {
+                name: "SMART FITNESS WATCH",
+                price: 249.99,
+                reviews: 1893,
+                rating: 4.9,
+                image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a",
+                secondaryImage: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80",
+                tag: "TRENDING"
+            },
+            {
+                name: "COMPRESSION SOCKS PACK",
+                price: 29.95,
+                reviews: 345,
+                rating: 4.3,
+                image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82",
+                secondaryImage: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?q=80",
+                tag: "BEST VALUE"
+            },
+            {
+                name: "PROTEIN SHAKER DELUXE",
+                price: 24.99,
+                reviews: 782,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1577803645773-f96470509666",
+                secondaryImage: "https://images.unsplash.com/photo-1577803645773-f96470509666?q=80",
+                tag: "ESSENTIAL"
+            },     {
+                name: "OUTSIDE VIBES T-SHIRT SUNSHINE",
+                price: 104.95,
+                reviews: 1234,
+                rating: 4.5,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+                secondaryImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80",
+                tag: "BEST SELLER"
+            }
+        ];
+
+        const productContainer = document.querySelector('.grid');
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        let showingAll = false;
+
+        function createProductCard(product) {
+            return `
+                <div class="relative group product-card">
+                    <div class="absolute top-2 left-1 z-10 flex gap-2 md:top-2 md:left-2">
+                        ${product.tag ? `<span class="bg-white px-2 py-0.5 rounded-full text-[10px] font-semibold border border-black md:text-xs md:px-3 md:py-1">${product.tag}</span>` : ''}
+                    </div>
+                    <div class="relative overflow-hidden aspect-square rounded-lg">
+                        <img src="${product.image}" alt="${product.name}" 
+                             class="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
+                        <img src="${product.secondaryImage}" alt="${product.name}" 
+                             class="w-full h-full object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    </div>
+                    <div class="mt-2 md:mt-4">
+                        <h3 class="font-medium text-sm md:text-base">${product.name}</h3>
+                        <div class="flex items-center mt-0.5 md:mt-1">
+                            <div class="flex text-sm md:text-base">★★★★★</div>
+                            <span class="text-xs md:text-sm text-gray-500 ml-1 md:ml-2">${product.reviews} Reviews</span>
+                        </div>
+                        <p class="mt-0.5 md:mt-1 text-sm md:text-base">$${product.price}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function initializeProducts() {
+            const isMobile = window.innerWidth < 768;
+            const productsToShow = isMobile ? 4 : products.length;
+            
+            productContainer.innerHTML = products
+                .slice(0, productsToShow)
+                .map(product => createProductCard(product))
+                .join('');
+        }
+
+        showMoreBtn.addEventListener('click', () => {
+            if (!showingAll) {
+                productContainer.innerHTML = products
+                    .map(product => createProductCard(product))
+                    .join('');
+                showMoreBtn.textContent = 'Show Less';
+                showingAll = true;
+            } else {
+                initializeProducts();
+                showMoreBtn.textContent = 'Show More';
+                showingAll = false;
+            }
+        });
+
+        window.addEventListener('resize', initializeProducts);
+        initializeProducts();
+    </script>
+</body>
+</html>
