@@ -24,8 +24,8 @@ A responsive webpage showcasing a "Best Sellers" product carousel with interacti
 
 
 ## 💻 Installation and Usage
-1. Clone the repository:
-2. Navigate to the project directory:
+1. Clone the repository
+2. Navigate to the project directory
 3. Open `index.html` in your browser.
 
 ## 🤝 Contributing
